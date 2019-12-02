@@ -1,0 +1,22 @@
+{
+  "name": "jscourse",
+  "version": "1.0.0",
+  "description": "Test Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AleksandrPisanik/JSCourse.git"
+  },
+  "author": "AleksandrPisanik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AleksandrPisanik/JSCourse/issues"
+  },
+  "homepage": "https://github.com/AleksandrPisanik/JSCourse#readme",
+  "dependencies": {
+    "mocha": "^6.2.2"
+  }
+}
