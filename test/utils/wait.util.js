@@ -1,6 +1,6 @@
 const logger = require('./Log.util');
 
-const doWait = (action, interval, expectedValue) => {
+const doWait = (action, expectedValue, interval) => {
     return new Promise((resolve, reject) => {
         const actValue = action();
         if(actValue === expectedValue){
@@ -10,43 +10,29 @@ const doWait = (action, interval, expectedValue) => {
     })    
 }
 
-const retrier = (exp, action, maxCount, interval, count = 0, expectedValue, ifRes, ifRej) => {
+const retrier = (action, expectedValue, maxCount, interval, count) => {
     count++;
-    logger.info(`[${count}] Wait for ${exp}`);
-    return doWait(action, interval, expectedValue).then(() => ifRes(maxCount, count), () => ifRej(maxCount, count));
+    logger.info(`[${count}] Wait for true ${expectedValue}`);
+    return doWait(action, expectedValue, interval).then(() => {
+        logger.warning('Was able to reach expected condition!');
+        return true; 
+        }, (actValue) => {
+        if(maxCount <= count) {
+            logger.warning(`Was not able to reach expected condition! Last action = ${action()}`);
+            return false;
+        } else {
+            return retrier(action, expectedValue, maxCount, interval, count);
+        }
+    })
 }
 
 class Wait {
-    forTrue(action, maxCount, interval, count = 0, expectedValue) {
-        count++;
-        logger.info(`[${count}] Wait for true`);
-        return doWait(action, interval, expectedValue).then(() => {
-            logger.warning('Was able to reach expected condition!');
-            return true; 
-        }, () => {
-        if(maxCount <= count) {
-            logger.warning(`Was not able to reach expected condition! Action = ${action()}`)
-            return false;
-        } else {
-            return this.forTrue(action, maxCount, interval, count, expectedValue);
-            }
-        })
+    forTrue(action, maxCount, interval, count = 0) {
+        return retrier(action, true, maxCount, interval, count);
     }
 
-    forFalse(action, maxCount, interval, count = 0, expectedValue) {
-        count++;
-        logger.info(`[${count}] Wait for false`);
-        return doWait(action, interval, expectedValue).then(() => {
-            if(maxCount <= count) {
-                logger.warning(`Was not able to reach expected condition! Action = ${action()}`)
-                return false;
-            } else {
-                return this.forFalse(action, maxCount, interval, count, expectedValue);
-            }
-        }, () => {
-            logger.warning('Was able to reach expected condition!');
-            return true; 
-        })
+    forFalse(action, maxCount, interval, count = 0) {
+        return retrier(action, false, maxCount, interval, count);
     }
 }
 
