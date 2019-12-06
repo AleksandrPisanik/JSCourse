@@ -4,23 +4,23 @@ const logger = require('./utils/Log.util');
 const Wait = require('./utils/wait.util');
 
 describe('Wait Test', () => {
-    it('should wait for true "true"', () => {
+    it('should wait for true "true"', async () => {
         const wait = new Wait();
         return wait.forTrue(() => true, 5, 1000).then((result) => assert.isTrue(result));
-    })
+    });
 
-    it('should wait for true "false"', () => {
+    it('should wait for true "false"', async () => {
         const wait = new Wait();
         return wait.forTrue(() => false, 5, 1000).then((result) => assert.isFalse(result));
-    })
+    });
 
-    it('should wait for false "false"', () => {
+    it('should wait for false "false"', async () => {
         const wait = new Wait();
         return wait.forFalse(() => true, 5, 1000).then((result) => assert.isFalse(result));
-    })
+    });
 
-    it('should wait for false "true"', () => {
+    it('should wait for false "true"', async () => {
         const wait = new Wait();
         return wait.forFalse(() => false, 5, 1000).then((result) => assert.isTrue(result));
-    })
-}) 
+    });
+});

@@ -1,5 +1,3 @@
-const logger = require('../utils/Log.util');
-
 class DateTimeUtil {
     today() {
         return new Date();
@@ -13,6 +11,25 @@ class DateTimeUtil {
 
     daysDifference(dateLeft, dateRight) {
         return dateLeft - dateRight;
+    }
+
+    getDateSameDaysAgo(daysCount) {
+        const currentDate = new Date();
+        const pastDate = new Date();
+        pastDate.setDate(currentDate.getDate() - daysCount);
+        return pastDate;
+    }
+
+    getDateTenDaysAgo() {
+        return this.getDateSameDaysAgo(10);
+    }
+
+    getSameLastDays(daysCount) {
+        const dates = [];
+        for(let count = daysCount - 1; count >= 0; count--) {
+            dates.push(this.getDateSameDaysAgo(count));
+        }
+        return dates;
     }
 }
 

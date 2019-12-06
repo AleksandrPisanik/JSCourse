@@ -6,7 +6,7 @@ const dateTime = require('./utils/dateTime.util');
 describe('Hello World TestSuite', () => {
   it('should write "Hello World"', () => {
       logger.info('Hello World');
-  });  
+  });
 });
 
 describe('Check function today()', () => {
@@ -22,7 +22,7 @@ describe('Check function setYears()', () => {
         const date = new Date();
         const actDate = dateTime.setYear(date, 2018);
         date.setFullYear(2018);
-        expDate = date;
+        const expDate = date;
         assert.equal(actDate.getTime(), expDate.getTime(), 'was not change');
     });
 });
@@ -32,8 +32,8 @@ describe('Check function daysDifferense()', () => {
         const date1 = new Date();
         const date2 = new Date();
         date2.setFullYear(2020);
-        expDiff = date2 - date1;
-        actDiff = dateTime.daysDifference(date2, date1);
+        const expDiff = date2 - date1;
+        const actDiff = dateTime.daysDifference(date2, date1);
         assert.equal(actDiff, expDiff, 'differense is wrong');
     });
 });

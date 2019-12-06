@@ -1,6 +1,6 @@
 const logWithTag = (tag, text) => {
     console.log(`[${tag}] ${new Date()} | ${text} [${tag}]`);
-}
+};
 
 class Log {
     info(text){
