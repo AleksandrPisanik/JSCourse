@@ -1,7 +1,7 @@
 const { By } = require('selenium-webdriver');
 
 const locators = {
-    searchInput: By.name('q')
+    resultCount: By.id('resultStats')
 }
 
 module.exports = { locators };

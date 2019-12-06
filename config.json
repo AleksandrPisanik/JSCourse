@@ -1,0 +1,6 @@
+{
+    "startURL": "https://www.google.com",
+    "implicit": 3000,
+    "pageLoading": 30000,
+    "scriptExecuting": 15000
+}
