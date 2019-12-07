@@ -16,7 +16,7 @@ class Browser {
         this.driver = await new Builder().forBrowser('chrome').build();
         try {
             await this.driver.get(config.startURL);
-            await this.driver.manage.setTimeouts({
+            await this.driver.manage().setTimeouts({
                 implicit: config.implicit,
                 pageLoading: config.pageLoading,
                 scriptExecuting: config.scriptExecuting
@@ -43,6 +43,12 @@ class Browser {
 
     async findElement(by, name) {
         return this.driver.findElement(by).catch((error) => {
+            logger.warning(`Can not find element ${name}: ${error}`);
+        })
+    }
+
+    async findElements(by, name) {
+        return this.driver.findElements(by).catch((error) => {
             logger.warning(`Can not find element ${name}: ${error}`);
         })
     }

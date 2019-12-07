@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
+    "test:exchangeRate": "mocha test/exchangeRates.spec.js",
     "test:google": "mocha test/google",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"

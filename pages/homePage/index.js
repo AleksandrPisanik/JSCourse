@@ -3,8 +3,8 @@ const { locators } = require('./constants');
 const BasePage = require('../../framework/basePage');
 
 class HomePage extends BasePage {
-    constructor(browser) {
-        super(browser);
+    constructor(browser, identLoc) {
+        super(browser, identLoc);
     }
 
     async search(text) {
