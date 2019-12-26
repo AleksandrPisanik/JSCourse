@@ -1,33 +1,13 @@
 {
-  "name": "jscourse",
+  "name": "protractor-project",
   "version": "1.0.0",
-  "description": "Test Project",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "test:exchangeRate": "mocha test/exchangeRates.spec.js",
-    "test:google": "mocha test/google",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "webdriver:update": "webdriver-manager update",
+    "webdriver:start": "npm run webdriver:update && webdriver-manager start",
+    "test": "protractor config.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AleksandrPisanik/JSCourse.git"
-  },
-  "author": "AleksandrPisanik",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/AleksandrPisanik/JSCourse/issues"
-  },
-  "homepage": "https://github.com/AleksandrPisanik/JSCourse#readme",
-  "dependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
-    "chromedriver": "^78.0.1",
-    "mocha": "^6.2.2",
-    "selenium-webdriver": "^4.0.0-alpha.5"
-  },
-  "devDependencies": {
-    "eslint": "^6.7.2"
-  }
+  "author": "",
+  "license": "ISC"
 }
